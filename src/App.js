@@ -24,6 +24,15 @@ class App extends React.Component {
     console.log("items: ", this.state.items);
   }
 
+  delete = (item) => {
+    const thisItems = this.state.items;
+    const newItems = thisItems.filter(e => e.id !== item.id);
+    this.setState({ items: newItems }, () => {
+      // 디버깅 콜백
+      console.log("Update Items : ", this.state.items)
+    });
+  }
+
   render() {
     // todoItems에 this.state.items.length 가 0보다 크다면 true 이므로 && 뒤에 값을 넘겨준다.
     // todoItem = this.state.items.length > 0 ? (<Paper></Paper>:"";) 이렇게 해도 같은 결과이다. 조건선택문 ? ternary operator
@@ -31,7 +40,7 @@ class App extends React.Component {
       <Paper style={{ margin: 16 }}>
         <List>
           {this.state.items.map((item, idx) => (
-            <Todo item={item} key={item.id} />
+            <Todo item={item} key={item.id} delete={this.delete} />
           ))}
         </List>
       </Paper>
