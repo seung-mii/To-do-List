@@ -1,6 +1,7 @@
 import React from 'react';
 import Todo from './Todo';
-import { Paper, List } from "@material-ui/core";
+import AddTodo from './AddTodo';
+import { Paper, List, Container } from "@material-ui/core";
 import './App.css';
 
 class App extends React.Component {
@@ -12,6 +13,15 @@ class App extends React.Component {
         { id: 1, title: "도서관 가기", done: false },
       ],
     };
+  }
+
+  add = (item) => {
+    const thisItems = this.state.items;
+    item.id = "ID-" + thisItems.length;  // key를 위한 id 추가
+    item.done = false;
+    thisItems.push(item);
+    this.setState({ items: thisItems }); // update state
+    console.log("items: ", this.state.items);
   }
 
   render() {
@@ -27,8 +37,14 @@ class App extends React.Component {
       </Paper>
     );
 
-    // 생성된 컴포넌트 JSX를 리턴한다.
-    return <div className='App'> {todoItems} </div>;
+    return (
+      <div className="App">
+        <Container maxWidth="md">
+          <AddTodo add={this.add} />
+          <div className="TodoList">{todoItems}</div>
+        </Container>
+      </div>
+    );
   }
 }
 
