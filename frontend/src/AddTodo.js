@@ -12,7 +12,6 @@ class AddTodo extends React.Component {
     const thisItem = this.state.item;
     thisItem.title = e.target.value;
     this.setState({ item: thisItem });
-    console.log(thisItem);
   }
 
   onButtonClick = () => {
@@ -21,7 +20,7 @@ class AddTodo extends React.Component {
   }
 
   enterKeyEventHandler = (e) => {
-    if (e.key == 'Enter') {
+    if (e.key === 'Enter') {
       this.onButtonClick();
     }
   }

@@ -3,34 +3,38 @@ import Todo from './Todo';
 import AddTodo from './AddTodo';
 import { Paper, List, Container } from "@material-ui/core";
 import './App.css';
+import { call } from './service/ApiService';
 
 class App extends React.Component {
   constructor(props) { // 매개변수 props 생성자 
     super(props);      // 매개변수 props 초기화
     this.state = {     // item에 item.id, item.title, item.done 매개변수 이름과 값 할당
-      items: [
-        { id: 0, title: "책 읽기", done: true },
-        { id: 1, title: "도서관 가기", done: false },
-      ],
+      items: [],
     };
   }
 
   add = (item) => {
-    const thisItems = this.state.items;
-    item.id = "ID-" + thisItems.length;  // key를 위한 id 추가
-    item.done = false;
-    thisItems.push(item);
-    this.setState({ items: thisItems }); // update state
-    console.log("items: ", this.state.items);
+    call("/todo", "POST", item).then((response) => 
+      this.setState({items:response.data})
+    );
   }
 
   delete = (item) => {
-    const thisItems = this.state.items;
-    const newItems = thisItems.filter(e => e.id !== item.id);
-    this.setState({ items: newItems }, () => {
-      // 디버깅 콜백
-      console.log("Update Items : ", this.state.items)
-    });
+    call("/todo", "DELETE", item).then((response) => 
+      this.setState({items:response.data})
+    );
+  }
+
+  update = (item) => {
+    call("/todo", "PUT", item).then((response) => 
+      this.setState({items:response.data})
+    );
+  }
+
+  componentDidMount() {
+    call("/todo", "GET", null).then((response) => 
+      this.setState({items:response.data})
+    );
   }
 
   render() {
