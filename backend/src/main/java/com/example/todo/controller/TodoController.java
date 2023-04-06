@@ -22,6 +22,7 @@ import com.example.todo.service.TodoService;
 
 import lombok.extern.slf4j.Slf4j;
 
+//@CrossOrigin(origins = "*")
 @Slf4j
 @RestController
 @RequestMapping("todo")
@@ -43,21 +44,21 @@ public class TodoController {
 		 * }
 		 */
 
-		// dto 를 이용해 테이블에 저장하기 위한 entity를 생성한다.
+		// dto �� �̿��� ���̺� �����ϱ� ���� entity�� �����Ѵ�.
 		TodoEntity entity = TodoDTO.toEntity(dto);
-		// entity userId를 임시로 지정한다.
+		// entity userId�� �ӽ÷� �����Ѵ�.
 		entity.setId(null);
 		entity.setUserId(userId);
 		
-		// service.create 를 통해 repository 에 entity를 저장한다.
-		// 이때 넘어노는 값이 없을 수도 있으므로 List가 아닌 Optional 로 한다.
+		// service.create �� ���� repository �� entity�� �����Ѵ�.
+		// �̶� �Ѿ��� ���� ���� ���� �����Ƿ� List�� �ƴ� Optional �� �Ѵ�.
 		List<TodoEntity> entities = service.create(entity);
 		
-		// entities 를 dtos 로 스트림 변환한다.
+		// entities �� dtos �� ��Ʈ�� ��ȯ�Ѵ�.
 		List<TodoDTO> dtos = entities.stream().map(TodoDTO::new).collect(Collectors.toList());
 		log.info("Log:entities => dtos ok!");		
 
-		// Response DTO를 생성한다.
+		// Response DTO�� �����Ѵ�.
 		/* {
 		 * 		"error" : null,
 		 * 		"data": [
@@ -71,7 +72,7 @@ public class TodoController {
 		ResponseDTO<TodoDTO> response = ResponseDTO.<TodoDTO>builder().data(dtos).build();
 		log.info("Log:responsedto ok!");
 		
-		// HTTP Status 200 상태로 response 를 전송한다.
+		// HTTP Status 200 ���·� response �� �����Ѵ�.
 		return ResponseEntity.ok().body(response);
 		} catch (Exception e) {
 			String error = e.getMessage();
@@ -88,7 +89,7 @@ public class TodoController {
 
 		ResponseDTO<TodoDTO> response = ResponseDTO.<TodoDTO>builder().data(dtos).build();
 		
-		// HTTP Status 200 상태로 response 를 전송한다.
+		// HTTP Status 200 ���·� response �� �����Ѵ�.
 		return ResponseEntity.ok().body(response);
 		
 	}
@@ -106,23 +107,23 @@ public class TodoController {
 		 * 		"done" : true
 		 * }
 		 */
-		// dto 를 이용해 테이블에 저장하기 위한 entity를 생성한다.
+		// dto �� �̿��� ���̺� �����ϱ� ���� entity�� �����Ѵ�.
 		TodoEntity entity = TodoDTO.toEntity(dto);
 
-		// entity userId를 임시로 지정한다.
+		// entity userId�� �ӽ÷� �����Ѵ�.
 		entity.setUserId(userId);
 		
-		// service.create 를 통해 repository 에 entity를 저장한다.
-		// 이때 넘어노는 값이 없을 수도 있으므로 List가 아닌 Optional 로 한다.
+		// service.create �� ���� repository �� entity�� �����Ѵ�.
+		// �̶� �Ѿ��� ���� ���� ���� �����Ƿ� List�� �ƴ� Optional �� �Ѵ�.
 		List<TodoEntity> entities = service.update(entity);
 		
-		// entities 를 dtos 로 스트림 변환한다.
+		// entities �� dtos �� ��Ʈ�� ��ȯ�Ѵ�.
 		List<TodoDTO> dtos = entities.stream().map(TodoDTO::new).collect(Collectors.toList());
 	
-		// Response DTO를 생성한다.
+		// Response DTO�� �����Ѵ�.
 		ResponseDTO<TodoDTO> response = ResponseDTO.<TodoDTO>builder().data(dtos).build();
 		
-		// HTTP Status 200 상태로 response 를 전송한다.
+		// HTTP Status 200 ���·� response �� �����Ѵ�.
 		return ResponseEntity.ok().body(response);
 		} catch (Exception e) {
 			String error = e.getMessage();
@@ -138,18 +139,18 @@ public class TodoController {
 		try {
 			TodoEntity entity = TodoDTO.toEntity(dto);
 
-			// entity userId를 임시로 지정한다.
+			// entity userId�� �ӽ÷� �����Ѵ�.
 			entity.setUserId(userId);
 
 			List<TodoEntity> entities = service.delete(entity);
 			
-			// entities 를 dtos 로 스트림 변환한다.
+			// entities �� dtos �� ��Ʈ�� ��ȯ�Ѵ�.
 			List<TodoDTO> dtos = entities.stream().map(TodoDTO::new).collect(Collectors.toList());
 		
-			// Response DTO를 생성한다.
+			// Response DTO�� �����Ѵ�.
 			ResponseDTO<TodoDTO> response = ResponseDTO.<TodoDTO>builder().data(dtos).build();
 			
-			// HTTP Status 200 상태로 response 를 전송한다.
+			// HTTP Status 200 ���·� response �� �����Ѵ�.
 			return ResponseEntity.ok().body(response);
 			} catch (Exception e) {
 				String error = e.getMessage();

@@ -16,9 +16,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class TokenProvider {
-	private static final String SECRET_KEY ="NMA8JPctFuna59f5";
+	private static final String SECRET_KEY = "NMA8JPctFuna59f5";
 	
-	public String create(UserEntity userEntity){
+	public String create(UserEntity userEntity) {
 		Date expireDate = Date.from(
 				Instant.now()
 				.plus(1,ChronoUnit.DAYS));
@@ -33,7 +33,7 @@ public class TokenProvider {
 		
 	}
 	
-	public String validateAndGetUserId(String token){
+	public String validateAndGetUserId(String token) {
 		Claims claims = Jwts.parser()
 				.setSigningKey(SECRET_KEY)
 				.parseClaimsJws(token)

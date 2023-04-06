@@ -17,13 +17,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name ="Todo")
+@Table(name = "Todo")
 public class TodoEntity {
 	@Id
-	@GeneratedValue(generator="system-uuid")  // ìë™ìœ¼ë¡œ id ì„±ì„±
+	@GeneratedValue(generator="system-uuid")  // ÀÚµ¿À¸·Î id ¼º¼º
 	@GenericGenerator(name="system-uuid",strategy="uuid")
 	private String id;
 	private String userId;
 	private String title;
 	private boolean done;
+
 }
