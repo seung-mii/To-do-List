@@ -1,6 +1,7 @@
 import React from 'react';
 import Todo from './Todo';
 import AddTodo from './AddTodo';
+import DeleteTodo from './DeleteTodo';
 import { Paper, List, Container, Grid, Button, AppBar, Toolbar, Typography } from "@material-ui/core";
 import './App.css';
 import { call, signout } from './service/ApiService';
@@ -33,9 +34,21 @@ class App extends React.Component {
     );
   }
 
+  deleteForCompleted = () => {
+    const thisItems = this.state.items;
+    console.log("Before deleteForCompleted Items : ", this.state.items);
+    thisItems.map((e) => {
+      if (e.done === true) {
+        call("/todo", "DELETE", e).then((response) =>
+          this.setState({ items: response.data })
+      );
+      }
+    });
+  }
+
   // componentDidMount 는 페이지(돔) 마운트가 일어나고 렌더링 되기 전에 실행된다.
   componentDidMount() {
-    call("/todo", "GET", null).then((response) => 
+    call("/todo", "GET", null).then((response) =>
       this.setState({items:response.data, loading:false})
     );
   }
@@ -53,7 +66,7 @@ class App extends React.Component {
       </Paper>
     );
 
-    // navigationBar
+    // navigationBar 
     var navigationBar = (
       <AppBar position='static'>
         <Toolbar>
@@ -71,7 +84,7 @@ class App extends React.Component {
       </AppBar>
     )
 
-    // loading 중이 아닐 때 
+    // loading 중이 아닐 때
     var todoListPage = (
       <div>
         {navigationBar}
@@ -79,6 +92,7 @@ class App extends React.Component {
           <AddTodo add={this.add} />
           <div className='TodoList'>{todoItems}</div>
         </Container>
+        <DeleteTodo deleteForCompleted={this.deleteForCompleted} />
       </div>
     )
 
