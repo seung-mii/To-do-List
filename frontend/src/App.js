@@ -13,7 +13,7 @@ class App extends React.Component {
       items: [],
       // 로딩 중이라는 상태를 표현할 변수 생성자에 상태 변수를 초기화한다.
       loading: true
-    };
+    }; 
   }
 
   add = (item) => {
@@ -96,7 +96,7 @@ class App extends React.Component {
         <Toolbar>
           <Grid justify='space-between' container>
             <Grid item>
-              <Typography variant='h6'>오늘의 할 일</Typography>
+              <Typography variant='h6'>TO DO LIST</Typography>
             </Grid>
             <Grid item>
               <Button color='inherit' onClick={this.gotoProfile} >
@@ -117,9 +117,9 @@ class App extends React.Component {
         {navigationBar}
         <Container maxWidth="md">
           <AddTodo add={this.add} />
+          <DeleteTodo deleteForCompleted={this.deleteForCompleted} />
           <div className='TodoList'>{todoItems}</div>
         </Container>
-        <DeleteTodo deleteForCompleted={this.deleteForCompleted} />
       </div>
     )
 

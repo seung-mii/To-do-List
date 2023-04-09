@@ -15,7 +15,7 @@ class DeleteTodo extends React.Component {
 
   render() {
     return (
-      <Container maxWidth="md">
+      <Container maxWidth="md" style={{ textAlign: "right" }}>
         Delete Completed Item
         <IconButton
           aria-label='Delete Completed Todo'
