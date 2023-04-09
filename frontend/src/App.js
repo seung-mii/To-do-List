@@ -2,7 +2,7 @@ import React from 'react';
 import Todo from './Todo';
 import AddTodo from './AddTodo';
 import DeleteTodo from './DeleteTodo';
-import { Paper, List, Container, Grid, Button, AppBar, Toolbar, Typography } from "@material-ui/core";
+import { Paper, List, Container, Grid, Button, AppBar, Toolbar, Typography, Checkbox, ListItem } from "@material-ui/core";
 import './App.css';
 import { call, signout } from './service/ApiService';
 
@@ -12,7 +12,7 @@ class App extends React.Component {
     this.state = {     // item에 item.id, item.title, item.done 매개변수 이름과 값 할당
       items: [],
       // 로딩 중이라는 상태를 표현할 변수 생성자에 상태 변수를 초기화한다.
-      loading: true,
+      loading: true
     };
   }
 
@@ -41,9 +41,19 @@ class App extends React.Component {
       if (e.done === true) {
         call("/todo", "DELETE", e).then((response) =>
           this.setState({ items: response.data })
-      );
+        );
       }
     });
+  }
+
+  allCheckboxEventHandler = (e) => {
+    // console.log(e.target.checked);
+    const thisItems = this.state.items;
+
+    thisItems.map((item, idx) => {
+      item.done = !item.done
+      this.update(item)
+    })
   }
 
   // componentDidMount 는 페이지(돔) 마운트가 일어나고 렌더링 되기 전에 실행된다.
@@ -58,10 +68,20 @@ class App extends React.Component {
   }
 
   render() {
+    var checkbox = (
+      <ListItem style={{backgroundColor: "#F2F2F2"}}>
+        <Checkbox
+          onChange={this.allCheckboxEventHandler}
+        />
+        목록
+      </ListItem>
+    )
+
     // todoItems에 this.state.items.length 가 0보다 크다면 true 이므로 && 뒤에 값을 넘겨준다.
     // todoItem = this.state.items.length > 0 ? (<Paper></Paper>:"";) 이렇게 해도 같은 결과이다. 조건선택문 ? ternary operator
     var todoItems = this.state.items.length > 0 && (
       <Paper style={{ margin: 16 }}>
+        {checkbox}
         <List>
           {this.state.items.map((item, idx) => (
             <Todo item={item} key={item.id} delete={this.delete} update={this.update} />
