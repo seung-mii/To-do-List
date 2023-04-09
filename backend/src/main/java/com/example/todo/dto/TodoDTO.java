@@ -27,7 +27,4 @@ public class TodoDTO {
 				.title(dto.getTitle())
 				.done(dto.isDone()).build();
 	}
-	
-	
-
 }

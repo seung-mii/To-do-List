@@ -53,6 +53,10 @@ class App extends React.Component {
     );
   }
 
+  gotoProfile = () => {
+    window.location.href = "/profile";
+  }
+
   render() {
     // todoItems에 this.state.items.length 가 0보다 크다면 true 이므로 && 뒤에 값을 넘겨준다.
     // todoItem = this.state.items.length > 0 ? (<Paper></Paper>:"";) 이렇게 해도 같은 결과이다. 조건선택문 ? ternary operator
@@ -75,6 +79,9 @@ class App extends React.Component {
               <Typography variant='h6'>오늘의 할 일</Typography>
             </Grid>
             <Grid item>
+              <Button color='inherit' onClick={this.gotoProfile} >
+                Profile
+              </Button>
               <Button color='inherit' onClick={signout}>
                 Log out
               </Button>
@@ -103,7 +110,7 @@ class App extends React.Component {
     if (!this.state.loading) {
       content = todoListPage;
     }
-    
+
     // 생성된 컴포넌트 JPX를 리턴한다.
     return (
       <div className="App">
