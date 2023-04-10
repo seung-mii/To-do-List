@@ -1,0 +1,27 @@
+#pagination {
+  width: 900px;
+  height: 100px;
+  background-color: blueviolet;
+}
+
+#page {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-color: #3f51b5a5;
+  margin-right: 5px;
+  margin-top: 20px;
+  text-align: center;
+  padding-top: 10px;
+  box-sizing: border-box;
+  color: white;
+  font-weight: 800;
+  border-radius: 50ch;
+}
+
+#page:hover,
+#page:active,
+#page:visited {
+  background-color: #3f51b5;
+  cursor: pointer;
+}

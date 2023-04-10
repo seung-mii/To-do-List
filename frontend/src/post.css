@@ -1,0 +1,21 @@
+#post {
+  width: 100%;
+  height: 50px;
+  background-color: chartreuse;
+  margin-bottom: 5px;
+}
+
+#post>span {
+  float: left;
+  height: 100%;
+}
+
+#post>span:first-child {
+  width: 50px;
+  background-color: cornflowerblue;
+}
+
+#post>span:nth-child(2) {
+  width: 250px;
+  background-color: coral;
+}
