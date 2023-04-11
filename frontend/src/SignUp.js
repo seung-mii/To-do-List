@@ -6,6 +6,9 @@ class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      showPassword: false
+    };
   }
 
   handleSubmit(event) {
@@ -24,7 +27,13 @@ class SignUp extends React.Component {
     );
   }
 
+  toggleIsActive = () => {
+    this.setState({showPassword: !this.state.showPassword});
+  };
+
   render() {
+    const thisPwd = this.state.showPassword;
+    
     return (
       <Container component="main" maxWidth="xs" style={{ marginTop: "8%" }}>
         <form noValidate onSubmit={this.handleSubmit}>
@@ -58,17 +67,31 @@ class SignUp extends React.Component {
                 autoFocus
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} style={{ position: "relative" }}>
               <TextField
                 autoComplete="current-password"
                 name="password"
                 variant="outlined"
                 required
                 fullWidth
+                type={thisPwd? "text" : "password"}
                 id="password"
                 label="패스워드"
                 autoFocus
               />
+              {thisPwd ? (
+                <span class="material-symbols-outlined"
+                  style={{ color: "#3f51b5", position: "absolute", top: "23px", right: "30px", cursor:"pointer" }}
+                  onClick={this.toggleIsActive}
+                >visibility
+                </span>
+                ) : (
+                <span class="material-symbols-outlined"
+                  style={{ color: "#3f51b5", position: "absolute", top: "23px", right: "30px", cursor:"pointer" }}
+                  onClick={this.toggleIsActive}
+                >visibility_off
+                </span>
+              )}
             </Grid>
             <Grid item xs={12}>
               <Button
