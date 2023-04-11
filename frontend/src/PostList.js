@@ -1,5 +1,6 @@
 import React from 'react';
 import Todo from './Todo';
+import { call } from './service/ApiService';
 import { Paper, List, Container, Grid, Button, AppBar, Toolbar, Typography, Checkbox, ListItem } from "@material-ui/core";
 import './postList.css';
 import './post.css';
@@ -7,6 +8,12 @@ import './post.css';
 class PostList extends React.Component {
   constructor(props) {
     super(props);
+  }
+
+  update = (item) => {
+    call("/todo", "PUT", item).then((response) => 
+      this.setState({items:response.data})
+    );
   }
 
   allCheckboxEventHandler = (e) => {
@@ -47,4 +54,3 @@ class PostList extends React.Component {
 }
 
 export default PostList; 
-
