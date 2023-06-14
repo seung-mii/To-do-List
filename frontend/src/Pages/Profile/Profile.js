@@ -1,7 +1,7 @@
 import React from 'react';
 import ProfileItem from './ProfileItem';
 import { AppBar, Toolbar, Grid, Button } from '@material-ui/core';
-import { call } from './service/ApiService';
+import { call } from '../../service/ApiService';
 
 class Profile extends React.Component {
   constructor(props) { 

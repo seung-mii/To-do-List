@@ -1,11 +1,10 @@
 import React from 'react';
-import Todo from './Todo';
-import AddTodo from './AddTodo';
-import DeleteTodo from './DeleteTodo';
-import { Paper, List, Container, Grid, Button, AppBar, Toolbar, Typography, Checkbox, ListItem } from "@material-ui/core";
+import AddTodo from './Pages/TodoList/AddTodo';
+import DeleteTodo from './Pages/TodoList/DeleteTodo';
+import { Container, Grid, Button, AppBar, Toolbar, Typography } from "@material-ui/core";
 import { call, signout } from './service/ApiService';
-import PostList from './PostList';
-import Pagination from './Pagination';
+import List from './Pages/TodoList/List';
+import Pagination from './Pages/TodoList/Pagination';
 import './App.css';
 
 class App extends React.Component {
@@ -104,7 +103,7 @@ class App extends React.Component {
           <AddTodo add={this.add} />
           <DeleteTodo deleteForCompleted={this.deleteForCompleted} />
           {this.state.items.length > 0 &&
-            <PostList
+            <List
               item={this.currentPostList(this.state.items)} 
             />
           }

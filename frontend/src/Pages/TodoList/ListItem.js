@@ -1,5 +1,5 @@
 import React from 'react';
-import './post.css';
+import './List.css';
 
 function Post(props) {
   return (

@@ -1,9 +1,8 @@
 import React from 'react';
 import Todo from './Todo';
-import { call } from './service/ApiService';
-import { Paper, List, Container, Grid, Button, AppBar, Toolbar, Typography, Checkbox, ListItem } from "@material-ui/core";
-import './postList.css';
-import './post.css';
+import { call } from '../../service/ApiService';
+import { Paper, List, Checkbox, ListItem } from "@material-ui/core";
+import './List.css';
 
 class PostList extends React.Component {
   constructor(props) {

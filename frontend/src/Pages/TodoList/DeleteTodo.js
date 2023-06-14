@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, IconButton } from "@material-ui/core";
-import './App.css';
+import '../../App.css';
 import DeleteOutlined from "@material-ui/icons/DeleteOutlined";
 
 class DeleteTodo extends React.Component {

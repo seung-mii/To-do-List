@@ -1,6 +1,6 @@
 import React from 'react';
 import { ListItem, ListItemText, InputBase, Paper, List, Typography, Button } from '@material-ui/core';
-import { call } from './service/ApiService';
+import { call } from '../../service/ApiService';
 
 class ProfileItem extends React.Component {
   constructor(props) { 

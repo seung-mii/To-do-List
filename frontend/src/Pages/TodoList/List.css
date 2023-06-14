@@ -19,3 +19,8 @@
   width: 250px;
   background-color: coral;
 }
+
+#post-list {
+  width: 900px;
+  height: 400px;
+}

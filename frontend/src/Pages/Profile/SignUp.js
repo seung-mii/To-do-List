@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Grid, Button, Typography, TextField, Link } from "@material-ui/core";
-import { signup } from './service/ApiService';
+import { signup } from '../../service/ApiService';
 
 class SignUp extends React.Component {
   constructor(props) {
